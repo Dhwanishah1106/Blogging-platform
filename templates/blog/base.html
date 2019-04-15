@@ -1,0 +1,38 @@
+{% load static %}
+<html>
+    <head>
+        <title>Blog</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+<body>
+    <div class="page-header">
+    {% if user.is_authenticated %}
+        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus" style="font-size:26px; margin:25px 20px 20px 18px;"></span></a>
+        <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit" style="font-size:26px; margin:25px 3px 3px 18px;"></span></a>
+        <p class="top-menu" ><div style = "margin-top: 25px; float:right; font-size:21px; color: white;">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></div></p>
+    {% else %}
+        <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-log-in" style="font-size:26px; margin:25px 20px 20px 18px;"></span></a>
+	<a href="{% url 'signup' %}" class="top-menu">Register</a>
+    {% endif %}
+    <!-- <form class="searchBar" method="GET" action='' style="float:right; margin-top:21px; margin-right:10px;">
+      <input type="text" name="q" placeholder="Search posts" style="height:27px; padding:5px;" value = "{{ request.GET.filter }}"/>
+      <button type="submit" style="width:40px; height:26px; background: #2196F3; color: white; font-size: 13px; border: 1px solid grey;"><i class="fa fa-search"></i></button>
+    </form> -->
+    <h1 style = "font-size:28px; font-family:cursive;">
+    <span class="glyphicon glyphicon-home"></span>
+    <a href="/">PICT Blogging portal</a></h1>
+    </div>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,3 +1,0 @@
-Username (leave blank to use 'abc'): dhwani
-Email address: dhwani@gmail.com
-password: chikoo1998
